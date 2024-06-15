@@ -7,26 +7,53 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: tdBGColor,
-      appBar: AppBar(
         backgroundColor: tdBGColor,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Icon(Icons.menu, color: tdBlack, size: 30),
-            SizedBox(
-              height: 40,
-              width: 40,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image.asset('assets/images/avatar.jpg'),
-              ),
-            ),
-          ],
+        appBar: _buildAppBar(),
+        body: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            children: [
+              searchBox(),
+            ],
+          ),
+        ));
+  }
+
+  Widget searchBox() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: const TextField(
+        decoration: InputDecoration(
+          hintText: 'Search',
+          hintStyle: TextStyle(color: tdGrey),
+          prefixIcon: Icon(Icons.search, color: tdGrey, size: 20),
+          prefixIconConstraints: BoxConstraints(minWidth: 25, maxHeight: 20),
+          border: InputBorder.none,
         ),
       ),
-      body: const Center(
-        child: Text('Welcome to the Todo App!'),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      backgroundColor: tdBGColor,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Icon(Icons.menu, color: tdBlack, size: 30),
+          SizedBox(
+            height: 40,
+            width: 40,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset('assets/images/avatar.jpg'),
+            ),
+          ),
+        ],
       ),
     );
   }
